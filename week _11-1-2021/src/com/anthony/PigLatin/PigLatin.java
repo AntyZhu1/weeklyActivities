@@ -7,6 +7,10 @@ public class PigLatin {
         String[] inputArray = input.split(" ");
 
         ArrayList<StringBuilder> outArray = new ArrayList<>();
+//
+//        for (String s : inputArray) {
+//            System.err.println(s);
+//        }
 
         int wordNum = 0;
 
@@ -21,6 +25,10 @@ public class PigLatin {
 
                 //First Character is a vowel
                 if (position == 0 && vowels.contains(Character.toLowerCase(s.charAt(position)))) {
+
+                    System.err.println(s);
+
+
                     startsWithVowel = true;
                     //Is First Word
                     if (wordNum == 0) {
@@ -38,16 +46,21 @@ public class PigLatin {
 
                 //First Character is a consonant
                 else if (position == 0 && !vowels.contains(Character.toLowerCase(s.charAt(position)))) {
+
                     char firstLetter = s.charAt(position);
+//                    System.err.println(firstLetter);
+
                     position++;
                     Boolean capitalize = true;
-                    if (wordNum == 0) {
-                        rearranged.append(Character.toUpperCase(s.charAt(position)));
+                    if (s.length() > 1) {
+                        if (wordNum == 0) {
+                            rearranged.append(Character.toUpperCase(s.charAt(position)));
+                        }
+                        else {
+                            rearranged.append(s.charAt(position));
+                        }
+                        position++;
                     }
-                    else {
-                        rearranged.append(s.charAt(position));
-                    }
-                    position++;
                     while (position < s.length()) {
                         rearranged.append(s.charAt(position));
                         position++;
@@ -57,14 +70,18 @@ public class PigLatin {
 
 
                 }
+
+
                 if (startsWithVowel) {
                     rearranged.append("way");
                 }
                 else {
                     rearranged.append("ay");
                 }
-                outArray.add(rearranged);
-                wordNum++;
+//            System.err.println(rearranged);
+
+            outArray.add(rearranged);
+            wordNum++;
 
 
 
@@ -82,6 +99,7 @@ public class PigLatin {
                 }
             }
             System.out.print(s + " ");
+            System.out.println(" ");
         }
 
     }
